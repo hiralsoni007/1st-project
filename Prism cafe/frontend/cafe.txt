@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prism cafe - Home</title>
+<style>
+/* ===== BASE ===== */
+body, html {
+    margin:0; padding:0; font-family:'Poppins', sans-serif; background:#fdf6f0; color:#333;
+}
+a { text-decoration:none; color:inherit; }
+
+/* ===== HERO ===== */
+.hero {
+    height:100vh;
+    background: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; position:relative;
+}
+.hero::after {
+    content:'';
+    position:absolute; top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.4);
+}
+.hero-content {
+    position:relative; z-index:1; color:#fff; display:flex; flex-direction:column; align-items:center;
+}
+.hero-content h1 { font-size:3rem; margin:20px 0 10px; }
+.hero-content p { font-size:1.2rem; margin-bottom:25px; }
+.hero-content .btn { padding:12px 25px; font-size:1rem; border:none; border-radius:8px; background:#8B5E3C; color:#fff; transition:0.3s; margin-top:15px; }
+.hero-content .btn:hover { background:#a37452; }
+
+/* ===== SEARCH BAR ===== */
+.search-container {
+    position:relative;
+    width:60%;
+    max-width:500px;
+    margin-bottom:20px;
+    z-index:2;
+}
+.search-container input[type="text"] {
+    width:100%; padding:12px 15px; border:2px solid #8B5E3C; border-radius:8px; font-size:1rem; outline:none;
+}
+/* AUTOCOMPLETE LIST */
+.autocomplete-items {
+    position:absolute;
+    background:#fff; border:1px solid #8B5E3C; border-top:none; max-height:200px; overflow-y:auto; width:100%; z-index:99;
+}
+.autocomplete-item {
+    padding:10px; cursor:pointer;
+    color: #000; /* <-- text black now */
+}
+.autocomplete-item:hover { background:#f1f1f1; }
+
+/* ===== ABOUT ===== */
+.about {
+    padding:60px 20px;
+    text-align:center;
+}
+.about h2 { font-size:2.5rem; color:#4b2e1f; margin-bottom:20px; }
+.about p { font-size:1.1rem; color:#555; max-width:700px; margin:0 auto; }
+
+/* ===== FOOTER ===== */
+footer {
+    background:#8B5E3C; color:#fff; text-align:center; padding:40px 20px;
+}
+footer p { margin:5px 0; }
+footer a { color:#fff; text-decoration:underline; }
+
+@media(max-width:768px){
+    .hero-content h1{ font-size:2rem; }
+    .search-container{ width:70%; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-content">
+
+        <!-- SEARCH BAR ON TOP -->
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search for any drink or food...">
+            <div id="autocomplete-list" class="autocomplete-items"></div>
+        </div>
+
+        <!-- BRAND NAME & TAGLINE -->
+        <h1>Prism Cafe</h1>
+        <p>Your cozy cafe for the best coffee & treats in town.</p>
+        <!-- EXPLORE BUTTON -->
+        <a href="menu.html"><button class="btn">Explore Menu</button></a>
+    </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="about">
+    <h2>Welcome to Prism Cafe</h2>
+    <p>At Prism Cafe, we serve freshly brewed coffee, handcrafted drinks, and delicious food in a cozy, vibrant environment. Come in for the aroma, stay for the experience!</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>Prism Cafe</p>
+    <p>123 Cafe Street, Your City, India</p>
+    <p>Email: info@Prismcafe.com | Phone: +91 1234567890</p>
+    <p>Follow us on 
+        <a href="#">Instagram</a> | 
+        <a href="#">Facebook</a>
+    </p>
+</footer>
+
+<script>
+// ===== MENU ITEMS =====
+const menuItems = [
+"Cortado","Machiato","Cappuccino","Cafe Latte","Flat White","Mocha Latte",
+"Espresso","Doppio","Americano","Romano","Lungo",
+"Classic Coffee Frappe","Oreo Frappe","Kitkat Frappe","Java Chip Frappe","Hazlenut Frappe","Mocha Frappe",
+"Iced Americano","Iced Latte","Vietnamese Iced","Iced Shaken Espresso","Cold Brew",
+"RedXpress","PinkXpress","GingerXpress","CocoXpress","FrozenXpress","TonicXpress","CranXpress",
+"Kimchi","Carbonara","Garlic Chilli Oil","Shin Chilli","Gochujang Paneer","Burnt Mushroom & Pepper","Corn & Cheese Ramen","Dragon's Breath",
+"Mix Veg Momos","Spicy Veg Momos","Maggie Momos","Paneer Momos","Veg Cheese Momos","Paneer Tikka Momos",
+"Sandwich","Burger","French Fries","Salad","Pizza Slice","Pasta"
+];
+
+// ===== AUTOCOMPLETE LOGIC =====
+const searchInput = document.getElementById('searchInput');
+const autocompleteList = document.getElementById('autocomplete-list');
+
+searchInput.addEventListener('input', function(){
+    const val = this.value.toLowerCase();
+    autocompleteList.innerHTML = '';
+    if(!val) return;
+    menuItems.forEach(item => {
+        if(item.toLowerCase().startsWith(val)){
+            const div = document.createElement('div');
+            div.classList.add('autocomplete-item');
+            div.innerHTML = `<strong>${item.substr(0,val.length)}</strong>${item.substr(val.length)}`;
+            div.addEventListener('click', function(){
+                searchInput.value = item;
+                autocompleteList.innerHTML = '';
+                searchMenu(item);
+            });
+            autocompleteList.appendChild(div);
+        }
+    });
+});
+
+// ===== SEARCH FUNCTION =====
+function searchMenu(item=null){
+    const query = item || searchInput.value.trim();
+    if(!query) return;
+    window.location.href = `menu.html?search=${encodeURIComponent(query)}`;
+}
+
+// Close dropdown if clicked outside
+document.addEventListener('click', function(e){
+    if(e.target !== searchInput) autocompleteList.innerHTML='';
+});
+</script>
+
+</body>
+</html>

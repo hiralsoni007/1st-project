@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prism cafe - Menu</title>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    font-family:'Poppins', sans-serif;
+    background:#fdf6f0;
+    color:#333;
+    overflow-x:hidden;
+}
+section{ padding:80px 20px; }
+
+/* ===== DRINKS BACKGROUND ===== */
+#drinks{
+    background:
+      linear-gradient(rgba(253,246,240,0.95), rgba(253,246,240,0.95)),
+      url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1400&q=80');
+    background-size:cover;
+    background-position:center;
+}
+
+/* ===== FOOD BACKGROUND ===== */
+#food{
+    background:
+      linear-gradient(rgba(255,250,245,0.96), rgba(255,250,245,0.96)),
+      url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1400&q=80');
+    background-size:cover;
+    background-position:center;
+}
+
+/* ===== HEADINGS ===== */
+.menu-header{text-align:center;margin-bottom:40px;}
+.menu-tag{
+    padding:6px 16px;
+    background:#8B5E3C;
+    color:#fff;
+    border-radius:20px;
+    font-size:0.8rem;
+}
+.fancy-title{
+    font-size:2.5rem;
+    color:#4b2e1f;
+    margin:15px 0 10px;
+}
+.fancy-title::after{
+    content:''; width:70px; height:4px;
+    background:#8B5E3C;
+    display:block;
+    margin:10px auto 0;
+    border-radius:10px;
+}
+.menu-subtext{color:#666;font-size:1.1rem;}
+
+/* ===== CAROUSEL ===== */
+.carousel-3d-container{
+    perspective:1200px;
+    max-width:1200px;
+    margin:0 auto 80px;
+    height:450px;
+    position:relative;
+}
+.carousel-3d{
+    width:100%;
+    height:100%;
+    position:absolute;
+    left:50%;
+    transform-style:preserve-3d;
+    transform:translateX(-50%);
+    transition:transform 1s;
+}
+
+/* ===== CARDS ===== */
+.carousel-card{
+    position:absolute;
+    width:220px;
+    height:320px;
+    top:50px;
+    left:50%;
+    background:#fff;
+    border-radius:20px;
+    box-shadow:0 15px 30px rgba(0,0,0,0.25);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
+
+.card-image{
+    height:50%;
+    background-size:cover;
+    background-position:center;
+}
+.card-content{
+    padding:14px;
+    display:flex;
+    flex-direction:column;
+    flex-grow:1;
+    justify-content:space-between;
+}
+.card-content h3{
+    margin:0 0 4px;
+    color:#8B5E3C;
+}
+.card-content p{
+    margin:0 0 6px;
+    font-size:0.9rem;
+    line-height:1.3;
+}
+.order-btn{
+    margin-top:6px;
+    padding:6px 10px;
+    font-size:0.9rem;
+    border:none;
+    background:#8B5E3C;
+    color:#fff;
+    border-radius:8px;
+    cursor:pointer;
+}
+.order-btn:hover{
+    background:#a37452;
+}
+
+/* ===== CONTROLS ===== */
+.carousel-controls{
+    position:absolute;
+    top:50%;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    transform:translateY(-50%);
+}
+.carousel-btn{
+    background:rgba(139,94,60,0.8);
+    color:#fff;
+    border:none;
+    font-size:2rem;
+    padding:10px 18px;
+    border-radius:50%;
+    cursor:pointer;
+}
+.carousel-btn:hover{ background:#8B5E3C; }
+
+/* ===== GO TO CHECKOUT ===== */
+#goCheckout{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#8B5E3C;
+    color:#fff;
+    padding:12px 18px;
+    border:none;
+    border-radius:10px;
+    font-size:1rem;
+    cursor:pointer;
+    z-index:9999;
+}
+#goCheckout:hover{background:#a37452;}
+
+/* ===== MEDIA ===== */
+@media(max-width:768px){
+    .carousel-card{width:180px;height:260px;}
+    .carousel-3d-container{height:380px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= DRINKS ================= -->
+<section id="drinks">
+<div class="menu-header">
+    <span class="menu-tag">Prism Cafe</span>
+    <h2 class="fancy-title">Our Drinks Menu</h2>
+    <p class="menu-subtext">Swipe through our finest coffee selections</p>
+</div>
+
+<div class="carousel-3d-container">
+<div class="carousel-3d" id="drinksCarousel">
+
+<!-- DRINK CARDS -->
+<div class="carousel-card" data-name="Cortado" data-price="150" data-image="https://tse4.mm.bing.net/th/id/OIP.5sdSEHwAqKa1Tp0ns4azIAHaEK?rs=1&pid=ImgDetMain&o=7&rm=3"><div class="card-image" style="background-image:url('https://tse4.mm.bing.net/th/id/OIP.5sdSEHwAqKa1Tp0ns4azIAHaEK?rs=1&pid=ImgDetMain&o=7&rm=3')"></div><div class="card-content"><h3>Cortado</h3><p>A smooth balance of espresso and warm milk, the Cortado is bold yet silky.<br>150rs</p><button class="order-btn">Order Now</button></div></div>
+
+<div class="carousel-card" data-name="Macchiato" data-price="150" data-image="https://tse2.mm.bing.net/th/id/OIP.iXfjVSIROHHq4jZtKm39iQHaEJ?rs=1&pid=ImgDetMain&o=7&rm=3"><div class="card-image" style="background-image:url('https://tse2.mm.bing.net/th/id/OIP.iXfjVSIROHHq4jZtKm39iQHaEJ?rs=1&pid=ImgDetMain&o=7&rm=3')"></div><div class="card-content"><h3>Macchiato</h3><p>A rich shot of espresso "marked" with a hint of velvety milk foam. The Macchiato is bold, simple, and full of character.<br>150rs</p> <button class="order-btn">Order Now</button></div></div>
+
+<div class="carousel-card" data-name="Cappuccino" data-price="155" data-image="https://static.itdg.com.br/images/1200-630/0093b901a326651004710993d43fe086/cappuccino.jpg"><div class="card-image" style="background-image:url('https://static.itdg.com.br/images/1200-630/0093b901a326651004710993d43fe086/cappuccino.jpg')"></div><div class="card-content"><h3>Cappuccino</h3><p>A classic favorite — rich espresso topped with steamed milk and a thick, frothy layer of foam..<br>155rs</p><button class="order-btn">Order Now</button></div></div>
+
+<div class="carousel-card" data-name="Cafe Latte" data-price="165" data-image="https://www.allrecipes.com/thmb/SUs7po94w7k2OwqYDjC3H_ZW3JQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/96629-cafe-latte-ddmfs-hero-4x3-0288359d9c37485fa69afe5369dbcf2e.jpg"><div class="card-image" style="background-image:url('https://www.allrecipes.com/thmb/SUs7po94w7k2OwqYDjC3H_ZW3JQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/96629-cafe-latte-ddmfs-hero-4x3-0288359d9c37485fa69afe5369dbcf2e.jpg')"></div><div class="card-content"><h3>Cafe Latte</h3><p>A smooth blend of espresso and steamed milk, finished with a light touch of foam.<br>165rs</p><button class="order-btn">Order Now</button></div></div>
+
+<div class="carousel-card" data-name="Flat White" data-price="250" data-image="https://www.nescafe.com/fr/sites/default/files/2023-04/Flat%20white_1_Desktop.jpg"><div class="card-image" style="background-image:url('https://www.nescafe.com/fr/sites/default/files/2023-04/Flat%20white_1_Desktop.jpg')"></div><div class="card-content"><h3>Flat White</h3><p>Velvety espresso fused with silky micro foam milk. The Flat White delivers a smooth, rich, and perfectly balanced.<br>250rs </p><button class="order-btn">Order Now</button></div></div>
+
+<div class="carousel-card" data-name="Mocha Latte" data-price="180" data-image="https://www.simplystacie.net/wp-content/uploads/2021/09/Mocha-Latte-9.jpg"><div class="card-image" style="background-image:url('https://www.simplystacie.net/wp-content/uploads/2021/09/Mocha-Latte-9.jpg')"></div><div class="card-content"><h3>Mocha Latte</h3><p>A delicious mix of bold espresso, creamy milk, and rich chocolate. The Mocha Latte is indulgent, cozy, and a treat in every sip.<br>₹180</p><button class="order-btn">Order Now</button></div></div>
+
+</div>
+<div class="carousel-controls">
+<button class="carousel-btn" id="prevDrinks">‹</button>
+<button class="carousel-btn" id="nextDrinks">›</button>
+</div>
+</div>
+</section>
+
+<!-- ================= FOOD ================= -->
+<section id="food">
+<h2 style="text-align:center;color:#8B5E3C;">Our Delicious Food</h2>
+<p style="text-align:center;color:#555;">Swipe through our delicious treats</p>
+
+<div class="carousel-3d-container">
+<div class="carousel-3d" id="foodCarousel">
+
+<!-- FOOD CARDS -->
+<div class="carousel-card" data-name="Sandwich" data-price="250" data-image="https://tse2.mm.bing.net/th/id/OIP.gYoYdZQhus3i-y_D5aoBlwHaE7"><div class="card-image" style="background-image:url('https://tse2.mm.bing.net/th/id/OIP.gYoYdZQhus3i-y_D5aoBlwHaE7')"></div><div class="card-content"><h3>Sandwich</h3><p>Fresh & tasty<br>₹250</p><button class="order-btn">Order Now</button></div></div>
+
+<div class="carousel-card" data-name="Burger" data-price="300" data-image="https://www.foodandwine.com/thmb/nfLq4BlAQNSaDlA8b7O5_yGE430=/2000x1334/filters:fill(auto,1)/Ultimate-Veggie-Burgers-FT-Recipe-0821-5d7532c53a924a7298d2175cf1d4219f.jpg"><div class="card-image" style="background-image:url('https://www.foodandwine.com/thmb/nfLq4BlAQNSaDlA8b7O5_yGE430=/2000x1334/filters:fill(auto,1)/Ultimate-Veggie-Burgers-FT-Recipe-0821-5d7532c53a924a7298d2175cf1d4219f.jpg')"></div><div class="card-content"><h3>Burger</h3><p>Juicy bite<br>₹300</p><button class="order-btn">Order Now</button></div></div>
+
+<div class="carousel-card" data-name="French Fries" data-price="150" data-image="https://i.ytimg.com/vi/582sVFObhhg/maxresdefault.jpg"><div class="card-image" style="background-image:url('https://i.ytimg.com/vi/582sVFObhhg/maxresdefault.jpg')"></div><div class="card-content"><h3>French Fries</h3><p>Crispy<br>₹150</p><button class="order-btn">Order Now</button></div></div>
+
+<div class="carousel-card" data-name="Salad" data-price="220" data-image="https://images.pexels.com/photos/1059905/pexels-photo-1059905.jpeg"><div class="card-image" style="background-image:url('https://images.pexels.com/photos/1059905/pexels-photo-1059905.jpeg')"></div><div class="card-content"><h3>Salad</h3><p>Healthy<br>₹220</p><button class="order-btn">Order Now</button></div></div>
+
+<div class="carousel-card" data-name="Pizza Slice" data-price="350" data-image="https://tse3.mm.bing.net/th/id/OIP.VLK4W8qKTJ9Ry9AWem5pOgHaE8?pid=ImgDet&w=474&h=316&rs=1&o=7&rm=3"><div class="card-image" style="background-image:url('https://tse3.mm.bing.net/th/id/OIP.VLK4W8qKTJ9Ry9AWem5pOgHaE8?pid=ImgDet&w=474&h=316&rs=1&o=7&rm=3')"></div><div class="card-content"><h3>Pizza Slice</h3><p>Cheesy delight<br>₹350</p><button class="order-btn">Order Now</button></div></div>
+
+<div class="carousel-card" data-name="Pasta" data-price="300" data-image="https://i.pinimg.com/originals/32/37/e5/3237e5b88e3cb8b4f431868431956c74.jpg"><div class="card-image" style="background-image:url('https://i.pinimg.com/originals/32/37/e5/3237e5b88e3cb8b4f431868431956c74.jpg')"></div><div class="card-content"><h3>Pasta</h3><p>Italian classic<br>₹300</p><button class="order-btn">Order Now</button></div></div>
+
+</div>
+<div class="carousel-controls">
+<button class="carousel-btn" id="prevFood">‹</button>
+<button class="carousel-btn" id="nextFood">›</button>
+</div>
+</div>
+</section>
+
+<!-- GO TO CHECKOUT -->
+<button id="goCheckout">Go to Checkout</button>
+
+<script>
+// CAROUSEL
+function initCarousel(id, prev, next){
+    const c = document.getElementById(id);
+    const cards = c.children;
+    let angle = 0;
+    const count = cards.length;
+    const theta = 360 / count;
+    const radius = 320;
+
+    for(let i=0;i<count;i++){
+        cards[i].style.transform = `rotateY(${i*theta}deg) translateZ(${radius}px)`;
+    }
+
+    function rotate(){
+        c.style.transform = `translateX(-50%) rotateY(${angle}deg)`;
+    }
+
+    document.getElementById(prev).onclick = ()=>{ angle += theta; rotate(); };
+    document.getElementById(next).onclick = ()=>{ angle -= theta; rotate(); };
+}
+
+initCarousel('drinksCarousel','prevDrinks','nextDrinks');
+initCarousel('foodCarousel','prevFood','nextFood');
+
+// CART FUNCTIONALITY
+let cart = [];
+
+const orderButtons = document.querySelectorAll('.order-btn');
+orderButtons.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+        const card = btn.closest('.carousel-card');
+        const item = {
+            name: card.dataset.name,
+            price: card.dataset.price,
+            image: card.dataset.image,
+            quantity: 1
+        };
+        // Check if already in cart
+        const existing = cart.find(i=>i.name===item.name);
+        if(existing){ existing.quantity++; }
+        else{ cart.push(item); }
+        alert(`${item.name} added to cart!`);
+        localStorage.setItem('cart', JSON.stringify(cart));
+    });
+});
+
+// GO TO CHECKOUT
+document.getElementById('goCheckout').addEventListener('click',()=>{
+    localStorage.setItem('cart', JSON.stringify(cart));
+    window.location.href='checkout.html';
+});
+</script>
+
+</body>
+</html>
